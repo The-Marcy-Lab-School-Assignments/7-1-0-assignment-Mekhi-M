@@ -1,14 +1,32 @@
-// TODO: Make this a controlled component. On each stroke of the key, it should filter the displayed pokemon
+/** @format */
+
+import { useContext } from "react";
+import PokemonContext from "../context/PokemonContext";
 
 const Filter = () => {
-    return (
-        <div className="ui search">
-            <div className="ui icon input">
-                <input className="prompt" placeholder="Search by Name..." />
-                <i className="search icon" />
-            </div>
-        </div>
-    )
-}
+	const allPokemon = useContext(PokemonContext).allPokemon;
+	const setFilteredPokemon = useContext(PokemonContext).setFilteredPokemon;
 
-export default Filter
+	const filter = filterQuery => {
+		setFilteredPokemon(
+			allPokemon.filter(({ name }) =>
+				name.toLowerCase().includes(filterQuery.toLowerCase())
+			)
+		);
+	};
+
+	return (
+		<div className='ui search'>
+			<div className='ui icon input'>
+				<input
+					className='prompt'
+					placeholder='Search by Name...'
+					onChange={e => filter(e.target.value)}
+				/>
+				<i className='search icon' />
+			</div>
+		</div>
+	);
+};
+
+export default Filter;

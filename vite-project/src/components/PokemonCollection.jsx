@@ -6,10 +6,14 @@ import { useContext } from "react";
 
 const PokemonCollection = () => {
 	const allPokemon = useContext(PokemonContext).allPokemon;
+	const filteredPokemon = useContext(PokemonContext).filteredPokemon;
+
+	const list =
+		filteredPokemon?.length < allPokemon.length ? filteredPokemon : allPokemon;
 
 	return (
 		<div className='ui six cards'>
-			{allPokemon?.map(pokemon => (
+			{list?.map((pokemon, i) => (
 				<PokemonCard
 					key={pokemon.id}
 					name={pokemon.name}

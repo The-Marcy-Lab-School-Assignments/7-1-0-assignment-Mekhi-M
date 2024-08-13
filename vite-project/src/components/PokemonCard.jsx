@@ -6,7 +6,7 @@ const PokemonCard = ({ name, hp, front, back }) => {
 	const [spriteToggle, setSpriteToggle] = useState(front);
 
 	const handleClick = () =>
-		spriteToggle === front ? setSpriteToggle(back) : setSpriteToggle(front);
+		setSpriteToggle(spriteToggle === front ? back : front);
 
 	return (
 		<div
