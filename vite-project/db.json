@@ -104,6 +104,13 @@
 			"front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448-mega.png",
 			"back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448-mega.png",
 			"id": 15
+		},
+		{
+			"name": "Blissey",
+			"hp": 255,
+			"front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/242.png",
+			"back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/242.png",
+			"id": 16
 		}
 	]
 }

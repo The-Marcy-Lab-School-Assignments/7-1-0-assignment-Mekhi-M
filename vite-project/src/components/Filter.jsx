@@ -1,29 +1,58 @@
 /** @format */
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import PokemonContext from "../context/PokemonContext";
 
 const Filter = () => {
 	const allPokemon = useContext(PokemonContext).allPokemon;
 	const setFilteredPokemon = useContext(PokemonContext).setFilteredPokemon;
+	// const setTriggerRender = useContext(PokemonContext).setTriggerRender;
 
-	const filter = filterQuery => {
+	const [filters, setFilters] = useState({ name: "", hp: 1 });
+
+	useEffect(() => {
 		setFilteredPokemon(
-			allPokemon.filter(({ name }) =>
-				name.toLowerCase().includes(filterQuery.toLowerCase())
+			allPokemon.filter(
+				({ name, hp }) =>
+					name.toLowerCase().includes(filters.name.toLowerCase()) &&
+					hp >= filters.hp
 			)
 		);
-	};
+		// setTriggerRender(s => (s ? false : true));
+	}, [filters]);
 
 	return (
-		<div className='ui search'>
-			<div className='ui icon input'>
+		<div
+			className='ui search'
+			style={{
+				display: "flex",
+				justifyContent: "center",
+				gap: "1rem",
+			}}>
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					gap: "1rem",
+					width: "200px",
+				}}>
+				<div className='ui icon input'>
+					<input
+						className='prompt'
+						placeholder='Search by Name...'
+						onChange={e => setFilters({ name: e.target.value, hp: filters.hp })}
+					/>
+					<i className='search icon' />
+				</div>
+				<label htmlFor='hp-filter'>Search by HP:</label>
 				<input
-					className='prompt'
-					placeholder='Search by Name...'
-					onChange={e => filter(e.target.value)}
+					type='range'
+					id='hp-filter'
+					min={1}
+					max={255}
+					value={filters.hp}
+					onChange={e => setFilters({ name: filters.name, hp: e.target.value })}
 				/>
-				<i className='search icon' />
 			</div>
 		</div>
 	);

@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import handleFetch from "../utils/handleFetch";
 import PokemonContext from "./PokemonContext";
 
-// TODO: Import the PokemonContext
-
 // const starterPokemon = [
 // 	{
 // 		id: 0,

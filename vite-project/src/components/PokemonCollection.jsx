@@ -8,8 +8,7 @@ const PokemonCollection = () => {
 	const allPokemon = useContext(PokemonContext).allPokemon;
 	const filteredPokemon = useContext(PokemonContext).filteredPokemon;
 
-	const list =
-		filteredPokemon?.length < allPokemon.length ? filteredPokemon : allPokemon;
+	const list = filteredPokemon?.length > 0 ? filteredPokemon : allPokemon;
 
 	return (
 		<div className='ui six cards'>
